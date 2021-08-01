@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="media-planner-test">
+    <test name="login">
+        <classes>
+            <class name="media.planner.test.LoginPageTest"/>
+        </classes>
+    </test>
+</suite>

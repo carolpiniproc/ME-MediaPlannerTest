@@ -1,0 +1,50 @@
+image:
+  name: spec4d/charvey-mixtape:latest
+
+definitions:
+  steps:
+    - step: &test_prebuild
+        name: Prebuild test image
+        script:
+            - docker version
+            # generate and push the docker image for this tag
+            # Assumes valid aws credentials to access ECR repo
+            - docker_login=$(aws ecr get-login --no-include-email)
+            - $docker_login
+            - docker build -t $DOCKER_IMAGE_ECR:prebuild -f scripts/FargateRunner/Dockerfile.prebuild .
+            - docker push $DOCKER_IMAGE_ECR:prebuild
+        services:
+            - docker
+    - step: &test_build
+        name: Build test image
+        script:
+          - docker version
+            # generate and push the docker image for this tag
+            # Assumes valid aws credentials to access ECR repo
+          - docker_login=$(aws ecr get-login --no-include-email --region=us-west-2)
+          - $docker_login
+          - docker build --tag $DOCKER_IMAGE_ECR:$BITBUCKET_BUILD_NUMBER -f scripts/FargateRunner/Dockerfile.test .
+          - docker push $DOCKER_IMAGE_ECR:$BITBUCKET_BUILD_NUMBER
+        services:
+            - docker
+    - step: &test_run
+        name: Execute test image in AWS Fargate
+        script:
+          - pipe: docker://goodcarrot/fargate-testrunner:release_1_1
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: 'us-west-2'
+              taskDefinition: scripts/FargateRunner/taskdefinition.json
+              runDefinition: scripts/FargateRunner/taskrundefinition.json
+              image: $DOCKER_IMAGE_ECR:$BITBUCKET_BUILD_NUMBER
+              passStr: SUCCESSFUL
+              failStr: failed
+pipelines:
+    custom:
+      #should be scheduled to run weekly
+      test_prebuild:
+        - step: *test_prebuild
+    default:
+        - step: *test_build
+        - step: *test_run

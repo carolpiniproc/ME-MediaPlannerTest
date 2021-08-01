@@ -1,0 +1,7 @@
+FROM openjdk:11-jdk
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y --quiet \
+&& apt-get install -y wget bash unzip awscli --quiet \
+&& rm -rf /var/lib/apt/lists/*

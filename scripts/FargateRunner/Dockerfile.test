@@ -1,0 +1,10 @@
+FROM 126581247961.dkr.ecr.us-west-2.amazonaws.com/media-planner-test:prebuild
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+COPY . /APP
+WORKDIR /APP/
+
+CMD ./gradlew test -info --rerun-tasks  -PartifactExportName=artifact.cz
+
+#This container is intended to be used with gradle.profile pointing to a remote container instance of selenium/standalone-chrome-debug:3.141.59-20200409

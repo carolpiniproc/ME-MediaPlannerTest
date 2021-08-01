@@ -1,0 +1,10 @@
+{
+    "launchType":"FARGATE",
+    "networkConfiguration":{
+      "awsvpcConfiguration": {
+         "assignPublicIp": "ENABLED",
+         "securityGroups": [ "sg-0ac2c9c4eefb0749e" ],
+         "subnets": [ "subnet-0e9319e82a8e096d1" ]
+      }
+    }
+}

@@ -1,0 +1,110 @@
+// Build File for building and executing Media Planner Test
+
+plugins {
+    id 'java'
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // testNG
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+
+    // poi
+    compile group: 'org.apache.poi', name: 'poi', version: '4.1.1'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.1'
+
+    // log4j
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.1'
+
+    // aws
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-bom', version: '1.11.875', ext: 'pom'
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-secretsmanager', version: '1.11.875'
+
+    // cucumber
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '6.10.4'
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '6.10.4'
+    testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.7.2'
+
+    // chromedriver
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.141.59'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.8.1'
+}
+
+apply from: 'gradle.properties'
+
+ext {
+    testErrorCounter = 0
+}
+
+//test {
+//    useTestNG() {
+//        useDefaultListeners = true
+//        /*suites './src/test/resources/testng.xml'*/
+//    }
+//    // ignoreFailures = true
+//
+//    systemProperty 'exportbucket', System.getProperty("exportbucket") ?: exportbucket
+//    systemProperty 'UrlMediaPlannerBase', System.getProperty("UrlMediaPlannerBase") ?: UrlMediaPlannerBase
+//    systemProperty 'excelPath', System.getProperty("excelPath") ?: excelPath
+//
+//    systemProperty 'driverClass', System.getProperty("driverClass") ?: driverClass
+//    systemProperty 'implicitWait', System.getProperty("implicitWait") ?: implicitWait
+//    systemProperty 'timeOutInSeconds', System.getProperty("timeOutInSeconds") ?: timeOutInSeconds
+//    systemProperty 'windowMaximize', System.getProperty("windowMaximize") ?: windowMaximize
+//
+//    systemProperty 'browserModeType', System.getProperty("browserModeType") ?: browserModeType
+//    systemProperty 'remoteWebDriverHost', System.getProperty("remoteWebDriverHost") ?: remoteWebDriverHost
+//}
+
+test {
+    ignoreFailures = true
+
+    testLogging {
+        outputs.upToDateWhen {false} // if not used you need to run cleanTest or clean task before test task
+        showStandardStreams = true // output default streams/logs
+    }
+
+    systemProperty 'exportbucket', System.getProperty("exportbucket") ?: exportbucket
+    systemProperty 'UrlMediaPlannerBase', System.getProperty("UrlMediaPlannerBase") ?: UrlMediaPlannerBase
+    systemProperty 'excelPath', System.getProperty("excelPath") ?: excelPath
+
+    systemProperty 'driverClass', System.getProperty("driverClass") ?: driverClass
+    systemProperty 'implicitWait', System.getProperty("implicitWait") ?: implicitWait
+    systemProperty 'timeOutInSeconds', System.getProperty("timeOutInSeconds") ?: timeOutInSeconds
+    systemProperty 'windowMaximize', System.getProperty("windowMaximize") ?: windowMaximize
+
+    systemProperty 'browserModeType', System.getProperty("browserModeType") ?: browserModeType
+    systemProperty 'remoteWebDriverHost', System.getProperty("remoteWebDriverHost") ?: remoteWebDriverHost
+}
+
+task afterTest() {
+    dependsOn 'test'
+    outputs.upToDateWhen {
+        !test.didWork
+    }
+    onlyIf {
+        project.hasProperty('artifactExportName')
+    }
+    doLast {
+        println "Uploading Test Results..."
+        exec {
+            commandLine './scripts/export_results.sh', 'build/reports/tests/test', exportbucket, artifactExportName
+        }
+        if (testErrorCounter > 0) {
+                throw new GradleException(testErrorCounter+' Tests Failed.')
+            } else{
+                println "Tests Succeeded"
+        }
+    }
+}

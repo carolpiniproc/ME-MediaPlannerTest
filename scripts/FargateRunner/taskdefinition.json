@@ -1,0 +1,25 @@
+{
+    "containerDefinitions": [
+      {
+         "essential": true,
+         "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "media-planner-test",
+              "awslogs-region": "us-west-2",
+              "awslogs-stream-prefix": "media-planner-test"
+            }
+         },
+         "name": "media-planner-test"
+      }
+    ],
+    "cpu": "512",
+    "executionRoleArn": "arn:aws:iam::126581247961:role/test-EcsExecutionRole",
+      "taskRoleArn": "arn:aws:iam::126581247961:role/test-QeEcsTaskRole",
+    "family": "fargate-task-definition",
+    "memory": "4096",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+       "FARGATE"
+    ]
+}

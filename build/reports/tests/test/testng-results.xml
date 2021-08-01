@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-07-30T20:10:40Z" name="Gradle suite" finished-at="2021-07-30T20:13:06Z" duration-ms="145628">
+    <groups>
+    </groups>
+    <test started-at="2021-07-30T20:10:40Z" name="Gradle test" finished-at="2021-07-30T20:13:06Z" duration-ms="145628">
+      <class name="media.planner.test.LoginPageTest">
+        <test-method is-config="true" signature="baseSetup()[pri:0, instance:media.planner.test.LoginPageTest@1f62fd87]" started-at="2021-07-30T20:10:40Z" name="baseSetup" finished-at="2021-07-30T20:10:44Z" duration-ms="3526" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- baseSetup -->
+        <test-method signature="forgotPasswordFlow()[pri:0, instance:media.planner.test.LoginPageTest@1f62fd87]" started-at="2021-07-30T20:10:44Z" name="forgotPasswordFlow" finished-at="2021-07-30T20:10:52Z" duration-ms="7953" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- forgotPasswordFlow -->
+        <test-method signature="invalidCredentials()[pri:0, instance:media.planner.test.LoginPageTest@1f62fd87]" started-at="2021-07-30T20:10:52Z" name="invalidCredentials" finished-at="2021-07-30T20:10:58Z" duration-ms="5921" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidCredentials -->
+        <test-method signature="logInOutTest()[pri:1, instance:media.planner.test.LoginPageTest@1f62fd87]" started-at="2021-07-30T20:10:58Z" name="logInOutTest" finished-at="2021-07-30T20:11:09Z" duration-ms="11504" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logInOutTest -->
+        <test-method is-config="true" signature="quitDriver()[pri:0, instance:media.planner.test.LoginPageTest@1f62fd87]" started-at="2021-07-30T20:11:09Z" name="quitDriver" finished-at="2021-07-30T20:11:09Z" duration-ms="274" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- media.planner.test.LoginPageTest -->
+      <class name="media.planner.test.SwitchAccountTest">
+        <test-method is-config="true" signature="baseSetup()[pri:0, instance:media.planner.test.SwitchAccountTest@154de653]" started-at="2021-07-30T20:11:58Z" name="baseSetup" finished-at="2021-07-30T20:11:59Z" duration-ms="1638" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- baseSetup -->
+        <test-method signature="switchAccount()[pri:6, instance:media.planner.test.SwitchAccountTest@154de653]" started-at="2021-07-30T20:11:59Z" name="switchAccount" finished-at="2021-07-30T20:13:05Z" duration-ms="66178" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- switchAccount -->
+        <test-method is-config="true" signature="quitDriver()[pri:0, instance:media.planner.test.SwitchAccountTest@154de653]" started-at="2021-07-30T20:13:05Z" name="quitDriver" finished-at="2021-07-30T20:13:06Z" duration-ms="394" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- media.planner.test.SwitchAccountTest -->
+      <class name="media.planner.test.NewScenarioPageTest">
+        <test-method is-config="true" signature="baseSetup()[pri:0, instance:media.planner.test.NewScenarioPageTest@3f1e75ab]" started-at="2021-07-30T20:11:28Z" name="baseSetup" finished-at="2021-07-30T20:11:30Z" duration-ms="1882" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- baseSetup -->
+        <test-method signature="createNewScenario()[pri:4, instance:media.planner.test.NewScenarioPageTest@3f1e75ab]" started-at="2021-07-30T20:11:30Z" name="createNewScenario" finished-at="2021-07-30T20:11:46Z" duration-ms="15728" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createNewScenario -->
+        <test-method signature="multipleKPIDisableConvTarget()[pri:5, instance:media.planner.test.NewScenarioPageTest@3f1e75ab]" started-at="2021-07-30T20:11:46Z" name="multipleKPIDisableConvTarget" finished-at="2021-07-30T20:11:57Z" duration-ms="11495" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- multipleKPIDisableConvTarget -->
+        <test-method is-config="true" signature="quitDriver()[pri:0, instance:media.planner.test.NewScenarioPageTest@3f1e75ab]" started-at="2021-07-30T20:11:57Z" name="quitDriver" finished-at="2021-07-30T20:11:58Z" duration-ms="272" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- media.planner.test.NewScenarioPageTest -->
+      <class name="media.planner.test.MyScenariosPageTest">
+        <test-method is-config="true" signature="baseSetup()[pri:0, instance:media.planner.test.MyScenariosPageTest@36c244ba]" started-at="2021-07-30T20:11:09Z" name="baseSetup" finished-at="2021-07-30T20:11:11Z" duration-ms="1656" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- baseSetup -->
+        <test-method signature="goToMyScenarios()[pri:2, instance:media.planner.test.MyScenariosPageTest@36c244ba]" started-at="2021-07-30T20:11:11Z" name="goToMyScenarios" finished-at="2021-07-30T20:11:25Z" duration-ms="13956" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- goToMyScenarios -->
+        <test-method signature="checkMyScenariosTableActions()[pri:3, instance:media.planner.test.MyScenariosPageTest@36c244ba]" started-at="2021-07-30T20:11:25Z" name="checkMyScenariosTableActions" finished-at="2021-07-30T20:11:28Z" duration-ms="2775" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkMyScenariosTableActions -->
+        <test-method is-config="true" signature="quitDriver()[pri:0, instance:media.planner.test.MyScenariosPageTest@36c244ba]" started-at="2021-07-30T20:11:28Z" name="quitDriver" finished-at="2021-07-30T20:11:28Z" duration-ms="413" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- media.planner.test.MyScenariosPageTest -->
+    </test> <!-- Gradle test -->
+  </suite> <!-- Gradle suite -->
+</testng-results>
