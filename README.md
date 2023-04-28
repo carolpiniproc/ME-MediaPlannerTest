@@ -25,7 +25,7 @@ This project uses gradle configuration conventions. You can adjust the configura
 * * or IntelliJ     
     
     
-* Database configuration - AWS SSO access: https://goodcarrot.jira.com/wiki/spaces/DSO/pages/1025704592/AWS+SSO+Account+setup
+* Database configuration - AWS SSO access: ....
 * How to run tests using the remote server: `./gradlew test ` 
 * How to run tests locally with chromedriver file: `./gradlew clean test -DbrowserModeType=local`
 * How to run a single test case + chromedriver : `./gradlew clean test -DbrowserModeType=local --tests className.testName`
