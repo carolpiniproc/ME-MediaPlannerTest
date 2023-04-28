@@ -47,5 +47,4 @@ This project uses gradle configuration conventions. You can adjust the configura
 
   
 * Carolina Procaccini  
-* Alejandro Battagliese   
 * Spencer Dawson- Original Author
